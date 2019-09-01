@@ -47,7 +47,7 @@ resource "aws_lambda_function" "this" {
   function_name = "${var.name}"
   handler = "main.handler"
 
-  timeout = 10
+  timeout = 5
   memory_size = 128
   publish = true
 }
