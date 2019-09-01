@@ -14,19 +14,19 @@ exports.handler = async (event, context, callback) => {
     
     const request = cf.request;
     
-    let referrer = request.headers['referer'];
+    let referer = request.headers['referer'];
 
-    if(referrer){
-        referrer = referrer.value;
+    if(referer){
+        referer = referer.value;
     }
-    
+
     let host = cf.headers['host'];
 
     if(host){
         host = host.value;
     }
 
-    if(referrer){
+    if(referer){
         const parsedReferer = url.parse(referrer);
 
         if(parsedReferer.host === host && parsedReferer.pathname === config.refererPath)
