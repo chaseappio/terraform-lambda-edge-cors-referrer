@@ -20,7 +20,7 @@ exports.handler = async (event, context, callback) => {
 
     if(referer != null){
         
-        const parsedReferer = url.parse(referrer);
+        const parsedReferer = url.parse(referer);
 
         if(parsedReferer.host === host && parsedReferer.pathname === config.refererPath)
         {
@@ -55,5 +55,5 @@ function extractHeader(request,headerName) {
         return null;
     }
 
-    return request.headers[headerName][0];
+    return request.headers[headerName][0].value;
 }
