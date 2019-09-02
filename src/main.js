@@ -14,19 +14,12 @@ exports.handler = async (event, context, callback) => {
     
     const request = cf.request;
     
-    let referer = request.headers['referer'];
+    let referer = extractHeader(request,'referer');
 
-    if(referer){
-        referer = referer.value;
-    }
+    let host = extractHeader(request,'host');
 
-    let host = cf.headers['host'];
-
-    if(host){
-        host = host.value;
-    }
-
-    if(referer){
+    if(referer != null){
+        
         const parsedReferer = url.parse(referrer);
 
         if(parsedReferer.host === host && parsedReferer.pathname === config.refererPath)
@@ -44,3 +37,23 @@ exports.handler = async (event, context, callback) => {
 
     callback(null,response);
 };
+
+function extractHeader(request,headerName) {
+    if(!request){
+        return null;
+    }
+
+    if(!request.headers){
+        return null;
+    }
+
+    if(!request.headers[headerName]){
+        return null;
+    }
+
+    if(request.headers[headerName].length <= 0){
+        return null;
+    }
+
+    return request.headers[headerName][0];
+}
