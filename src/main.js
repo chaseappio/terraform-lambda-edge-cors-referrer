@@ -15,14 +15,20 @@ exports.handler = async (event, context, callback) => {
     const request = cf.request;
     
     let referer = extractHeader(request,'referer');
-
+    let preftech = extractHeader(request,'content-prefetch');
     let host = extractHeader(request,'host');
+
+    if ( preftech && preftech.toLowerCase() =='true' )
+    {
+        callback(null,request);
+        return;
+    }
 
     if(referer != null){
         
         const parsedReferer = url.parse(referer);
 
-        if(parsedReferer.host === host && parsedReferer.pathname === config.refererPath)
+        if(  parsedReferer.host === host && parsedReferer.pathname === config.refererPath)
         {
             callback(null,request);
             return;
