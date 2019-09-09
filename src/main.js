@@ -15,10 +15,10 @@ exports.handler = async (event, context, callback) => {
     const request = cf.request;
     
     let referer = extractHeader(request,'referer');
-    let preftech = extractHeader(request,'content-prefetch');
+    let ua = extractHeader(request,'user-agent');
     let host = extractHeader(request,'host');
 
-    if ( preftech && preftech.toLowerCase() =='true' )
+    if ( ua && ua.indexOf(' Electron') != -1 )
     {
         callback(null,request);
         return;
