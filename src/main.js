@@ -18,6 +18,10 @@ exports.handler = async (event, context, callback) => {
     let ua = extractHeader(request,'user-agent');
     let host = extractHeader(request,'host');
 
+    if(request.uri.startsWith('/apps')){
+        request.uri = request.uri.substring(5);
+    }
+    
     if ( ua && ua.indexOf(' Electron') != -1 )
     {
         callback(null,request);
