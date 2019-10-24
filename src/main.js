@@ -25,12 +25,12 @@ exports.handler = async (event, context, callback) => {
     }
     
     for (const ext in extensions) {
-        if(request.uri.endsWith('.' +  ext)){
+        if(request.uri.endsWith('.' +  extensions[ext])){
             callback(null,request);
             return;
         }
     }
-    
+
     if(request.uri.startsWith('/apps')){
         request.uri = request.uri.substring(5);
     }
