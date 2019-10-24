@@ -18,6 +18,19 @@ exports.handler = async (event, context, callback) => {
     let ua = extractHeader(request,'user-agent');
     let host = extractHeader(request,'host');
 
+    let extensions = [];
+
+    if(config.extensions){
+        extensions = config.extensions.split('|');
+    }
+    
+    for (const ext in extensions) {
+        if(request.uri.endsWith('.' +  ext)){
+            callback(null,request);
+            return;
+        }
+    }
+    
     if(request.uri.startsWith('/apps')){
         request.uri = request.uri.substring(5);
     }

@@ -1,3 +1,4 @@
 {
-  "refererPath": "${REFERER_PATH}"
+  "refererPath": "${REFERER_PATH}",
+  "extensions" : "${EXTENSIONS}"
 }

@@ -8,6 +8,7 @@ data "template_file" "this" {
 
   vars = {
     REFERER_PATH = "${var.referer_path}"
+    EXTENSIONS = "${join("|",var.extensions)}"
   }
 }
 

@@ -6,3 +6,6 @@ variable "name" {
   type = "string"
 }
 
+variable "extensions" {
+  type = list(string)
+}
