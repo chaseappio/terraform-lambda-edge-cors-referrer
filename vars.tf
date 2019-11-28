@@ -1,9 +1,9 @@
 variable "referer_path" {
-  type = "string"
+  type = string
 }
 
 variable "name" {
-  type = "string"
+  type = string
 }
 
 variable "extensions" {
